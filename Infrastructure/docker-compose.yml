@@ -1,0 +1,55 @@
+version: '2'
+services:
+
+    sender:
+        build: Workers/Sender
+        command: python send.py 
+        tty: true
+
+    rabbitmq:
+        image: rabbitmq:3.6-management
+
+    mongodb:
+        image: mongo:3.3.15
+        volumes:
+            - /media/DiskDrive/google_finance:/data/db
+
+ 
+    vpn_receiver0:
+        build: 
+            context: OpenVPN 
+        environment:
+            - vconf=ovpn_configs/ipvanish-US-Ashburn-iad-a01.ovpn
+
+        entrypoint: ash -c "./start_vpn.sh & python3 receive.py"
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        cap_add:
+            - NET_ADMIN
+
+ 
+    vpn_receiver1:
+        build: 
+            context: OpenVPN 
+        environment:
+            - vconf=ovpn_configs/ipvanish-US-Ashburn-iad-a02.ovpn
+
+        entrypoint: ash -c "./start_vpn.sh & python3 receive.py"
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        cap_add:
+            - NET_ADMIN
+
+ 
+    vpn_receiver2:
+        build: 
+            context: OpenVPN 
+        environment:
+            - vconf=ovpn_configs/ipvanish-US-Ashburn-iad-a03.ovpn
+
+        entrypoint: ash -c "./start_vpn.sh & python3 receive.py"
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        cap_add:
+            - NET_ADMIN
+
