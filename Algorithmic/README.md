@@ -36,6 +36,7 @@ The route is described as a string consisting of different characters:
 Reason for including
 --------------------
 Demonstrates an ability to find clear, concise and simple solutions to algorithmically challenging problems
+
 Knowlege of basic language features in cluding:
   - Data structures (set, dictionary, tuple, list)
   - Recursion
