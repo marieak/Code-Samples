@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-#!/usr/bin/env python
-
 """Receives URL from RabbitMQ and Responds with the URL's contents"""
 
 __author__  = "Oliver Rice"
@@ -10,10 +8,17 @@ import requests
 import logging
 import json
 import pika
+import sys
 from collections import namedtuple
 
-
-logging.basicConfig(format='%(asctime)s %(message)s')
+# Configure Logging
+lg = logging.getLogger()
+lg.setLevel(logging.INFO)
+ch = logging.StreamHandler(sys.stdout)
+ch.setLevel(logging.DEBUG)
+lg_format = logging.Formatter('%(asctime)s %(message)s')
+ch.setFormatter(lg_format)
+lg.addHandler(ch)
 
 # Connect to RabbitMQ
 connection = pika.BlockingConnection(pika.ConnectionParameters(
@@ -48,7 +53,7 @@ def callback(ch, method, properties, body):
             body=json.dumps(msg))
             
     logging.info('Published results of %s' % body)
-    print('Published results of %s' % body)
+    #print('Published results of %s' % body)
 
     # Acknowlege that work has been completed
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -59,7 +64,6 @@ channel.basic_consume(callback,
         no_ack=False)
 
 # Waiting for messages
-print(' [*] Waiting for messages. To exit press CTRL+C')
-
+logging.info(' [*] Waiting for messages. To exit press CTRL+C')
 channel.start_consuming()
 
