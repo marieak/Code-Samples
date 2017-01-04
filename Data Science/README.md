@@ -1,6 +1,6 @@
 Exploration and Prediction.ipynb
 ---------------
-A python 3 Jupyter notebook demonstrating inline data visualizations and predictive models
+A python 3 Jupyter notebook with inline data visualizations and predictive models
 
 
 Objective
