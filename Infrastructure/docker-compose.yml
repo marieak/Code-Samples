@@ -9,47 +9,21 @@ services:
     rabbitmq:
         image: rabbitmq:3.6-management
 
-    mongodb:
-        image: mongo:3.3.15
-        volumes:
-            - /media/DiskDrive/google_finance:/data/db
-
- 
-    vpn_receiver0:
+    receiver0:
         build: 
-            context: OpenVPN 
-        environment:
-            - vconf=ovpn_configs/ipvanish-US-Ashburn-iad-a01.ovpn
+            context: Receiver 
 
-        entrypoint: ash -c "./start_vpn.sh & python3 receive.py"
-        devices:
-            - /dev/net/tun:/dev/net/tun
-        cap_add:
-            - NET_ADMIN
+        entrypoint: "python3 receive.py"
 
- 
-    vpn_receiver1:
+    receiver1:
         build: 
-            context: OpenVPN 
-        environment:
-            - vconf=ovpn_configs/ipvanish-US-Ashburn-iad-a02.ovpn
+            context: Receiver 
+                
+        entrypoint: "python3 receive.py"
 
-        entrypoint: ash -c "./start_vpn.sh & python3 receive.py"
-        devices:
-            - /dev/net/tun:/dev/net/tun
-        cap_add:
-            - NET_ADMIN
-
- 
-    vpn_receiver2:
+    receiver2:
         build: 
-            context: OpenVPN 
-        environment:
-            - vconf=ovpn_configs/ipvanish-US-Ashburn-iad-a03.ovpn
+            context: Receiver 
 
-        entrypoint: ash -c "./start_vpn.sh & python3 receive.py"
-        devices:
-            - /dev/net/tun:/dev/net/tun
-        cap_add:
-            - NET_ADMIN
+        entrypoint: "python3 receive.py"
 
