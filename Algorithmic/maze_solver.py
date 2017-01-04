@@ -1,23 +1,5 @@
-# Author : Oliver Rice
-# Date   : 2016-10-03
+#!/usr/bin/env python
 #
-#
-# Reason for including 
-# --------------------
-# I'm including this code sample to demonstrate an ability to find
-# simple, concise, and clear solutions to algorithmically challenging problems
-#
-# It also showcases some key laguages features including:
-#   Basic Data Structures (sets, dictionaries, tuples, lists)
-#   Recursion
-#   Dictionary & Tuple Unpacking
-#   Python 2 & 3 compatibility 
-
-
-
-# Note: The prompt question is from Checkio.org (Code challenges)
-
-
 # Prompt
 # --------------------
 #   The maze has no walls, but bushes surround the path on each side. 
@@ -35,6 +17,7 @@
 #   The route is described as a string consisting of different characters: 
 #       "S"=South, "N"=North, "E"=East, and "W"=West.
 
+__author__ = Oliver Rice
 
 def solve_maze(maze_map):
     
