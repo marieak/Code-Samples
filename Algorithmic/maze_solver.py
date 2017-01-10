@@ -67,7 +67,7 @@ def solve_maze(maze_map):
      
 
 
-# Evaluate checkio()
+# Evaluate solve_maze()
 if __name__ == '__main__':
     #This code using only for self-checking and not necessary for auto-testing
     def check_route(func, maze):
